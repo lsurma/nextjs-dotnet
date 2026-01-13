@@ -78,12 +78,22 @@ export default function BackofficePage() {
   };
 
   const handleCreateProduct = async () => {
+    if (!isFormValid()) return;
+
     try {
+      const price = parseFloat(formData.price);
+      const stock = parseInt(formData.stock, 10);
+
+      if (isNaN(price) || isNaN(stock)) {
+        setError('Invalid price or stock value');
+        return;
+      }
+
       await apiClient.createProduct({
         name: formData.name,
         description: formData.description,
-        price: parseFloat(formData.price),
-        stock: parseInt(formData.stock, 10),
+        price,
+        stock,
         imageUrl: formData.imageUrl,
       });
       setIsCreateDialogOpen(false);
@@ -96,14 +106,22 @@ export default function BackofficePage() {
   };
 
   const handleEditProduct = async () => {
-    if (!selectedProduct) return;
+    if (!selectedProduct || !isFormValid()) return;
 
     try {
+      const price = parseFloat(formData.price);
+      const stock = parseInt(formData.stock, 10);
+
+      if (isNaN(price) || isNaN(stock)) {
+        setError('Invalid price or stock value');
+        return;
+      }
+
       await apiClient.updateProduct(selectedProduct.id, {
         name: formData.name,
         description: formData.description,
-        price: parseFloat(formData.price),
-        stock: parseInt(formData.stock, 10),
+        price,
+        stock,
         imageUrl: formData.imageUrl,
       });
       setIsEditDialogOpen(false);

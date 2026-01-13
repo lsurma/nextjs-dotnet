@@ -52,6 +52,51 @@ class ApiClient {
     return response.json();
   }
 
+  async createProduct(product: Omit<Product, 'id'>): Promise<Product> {
+    const response = await fetch(`${API_BASE_URL}/api/products`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...this.getAuthHeader(),
+      },
+      body: JSON.stringify(product),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to create product');
+    }
+
+    return response.json();
+  }
+
+  async updateProduct(id: number, product: Omit<Product, 'id'>): Promise<void> {
+    const response = await fetch(`${API_BASE_URL}/api/products/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        ...this.getAuthHeader(),
+      },
+      body: JSON.stringify(product),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to update product');
+    }
+  }
+
+  async deleteProduct(id: number): Promise<void> {
+    const response = await fetch(`${API_BASE_URL}/api/products/${id}`, {
+      method: 'DELETE',
+      headers: {
+        ...this.getAuthHeader(),
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to delete product');
+    }
+  }
+
   async createOrder(order: Order): Promise<Order> {
     const response = await fetch(`${API_BASE_URL}/api/orders`, {
       method: 'POST',

@@ -27,8 +27,8 @@ A simple online shop with Next.js frontend and .NET backend API, featuring JWT a
 
 ### Prerequisites
 
-- .NET 10.0 SDK
-- Node.js 20.x
+- .NET SDK 8.0 or later (tested with .NET 10.0)
+- Node.js 20.x or later
 - npm
 
 ### Backend Setup
@@ -139,6 +139,17 @@ The bulk endpoint (`/api/bulk`) allows the frontend to send multiple API request
 - Legacy API compatibility where a single operation needs to be split into multiple backend calls
 
 Each request in the bulk payload is processed independently, and responses are returned with corresponding IDs for matching requests to responses.
+
+## Security Considerations
+
+⚠️ **This is a demonstration application. The following security practices are simplified for demo purposes and should NOT be used in production:**
+
+1. **Passwords**: Test account passwords are stored in plain text in the code. In production, use proper password hashing (e.g., BCrypt, Argon2).
+2. **JWT Secret**: The JWT signing key is hardcoded in `appsettings.json`. In production, use environment variables or secure configuration management (e.g., Azure Key Vault, AWS Secrets Manager).
+3. **Data Storage**: Data is stored in-memory. Use a proper database in production.
+4. **HTTPS**: The application uses HTTP. In production, always use HTTPS.
+5. **Input Validation**: Add comprehensive input validation and sanitization.
+6. **Rate Limiting**: Implement rate limiting to prevent abuse.
 
 ## License
 

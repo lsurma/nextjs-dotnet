@@ -41,7 +41,7 @@ export default function BackofficeLayout({
                   Products
                 </button>
                 <button
-                  onClick={() => router.push('/pages')}
+                  onClick={() => router.push('/backoffice/pages')}
                   className="text-sm text-gray-700 hover:text-gray-900 font-medium"
                 >
                   Pages

@@ -73,7 +73,7 @@ export default function PageEditor() {
         <div className="text-center">
           <p className="text-red-600 mb-4">{error || 'Page not found'}</p>
           <button
-            onClick={() => router.push('/pages')}
+            onClick={() => router.push('/backoffice/pages')}
             className="text-blue-600 hover:text-blue-800"
           >
             ← Back to Pages
@@ -90,7 +90,7 @@ export default function PageEditor() {
       <div className="bg-white border-b px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <button
-            onClick={() => router.push('/pages')}
+            onClick={() => router.push('/backoffice/pages')}
             className="text-blue-600 hover:text-blue-800"
           >
             ← Back

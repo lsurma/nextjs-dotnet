@@ -8,18 +8,13 @@ import { Page } from '@/lib/types';
 
 export default function PagesManagement() {
   const router = useRouter();
-  const { isAuthenticated } = useAuth();
   const [pages, setPages] = useState<Page[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push('/login');
-      return;
-    }
     loadPages();
-  }, [isAuthenticated, router]);
+  }, []);
 
   const loadPages = async () => {
     try {
@@ -42,7 +37,7 @@ export default function PagesManagement() {
         content: JSON.stringify({ content: [], root: {} }),
         isPublished: false,
       });
-      router.push(`/pages/editor/${newPage.id}`);
+      router.push(`/backoffice/pages/editor/${newPage.id}`);
     } catch (err) {
       console.error('Failed to create page:', err);
       setError('Failed to create page');
@@ -134,13 +129,13 @@ export default function PagesManagement() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <button
-                      onClick={() => router.push(`/pages/editor/${page.id}`)}
+                      onClick={() => router.push(`/backoffice/pages/editor/${page.id}`)}
                       className="text-blue-600 hover:text-blue-900 mr-4"
                     >
                       Edit
                     </button>
                     <button
-                      onClick={() => router.push(`/pages/${page.slug}`)}
+                      onClick={() => router.push(`/page/${page.slug}`)}
                       className="text-green-600 hover:text-green-900 mr-4"
                     >
                       View

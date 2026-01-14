@@ -1,6 +1,6 @@
 # Next.js + .NET E-commerce Application
 
-A simple online shop with Next.js frontend and .NET backend API, featuring JWT authentication and bulk request capabilities.
+A simple online shop with Next.js frontend and .NET backend API, featuring JWT authentication, bulk request capabilities, and a backoffice management interface.
 
 ## Features
 
@@ -10,6 +10,7 @@ A simple online shop with Next.js frontend and .NET backend API, featuring JWT a
   - Shopping cart
   - Order placement
   - JWT token authentication
+  - **Backoffice SPA** - Product management interface with shadcn/ui components
   
 - **Backend (.NET Web API)**
   - JWT authentication
@@ -20,8 +21,8 @@ A simple online shop with Next.js frontend and .NET backend API, featuring JWT a
 
 ## Test Credentials
 
-- `test@shop.com` / `Test123!`
-- `admin@shop.com` / `Admin123!`
+- `test@shop.com` / `Test123!` - Regular user
+- `admin@shop.com` / `Admin123!` - Admin user (for backoffice access)
 
 ## Getting Started
 
@@ -63,6 +64,21 @@ A simple online shop with Next.js frontend and .NET backend API, featuring JWT a
    ```
 
    The application will start on `http://localhost:3000`
+
+## Application Routes
+
+### Customer-Facing Routes
+- `/` - Home page (redirects to login or products)
+- `/login` - Login page
+- `/products` - Product listing page
+- `/cart` - Shopping cart
+
+### Backoffice Routes
+- `/backoffice` - Product management interface (requires authentication)
+  - View all products in a table
+  - Create new products
+  - Edit existing products
+  - Delete products
 
 ## API Endpoints
 
@@ -119,11 +135,20 @@ A simple online shop with Next.js frontend and .NET backend API, featuring JWT a
 ## Architecture
 
 ### Frontend
-- **Next.js 15** with App Router
+- **Next.js 16** with App Router
 - **TypeScript** for type safety
-- **Tailwind CSS** for styling
+- **Tailwind CSS 4** for styling
+- **shadcn/ui** component library for the backoffice interface
 - **Context API** for state management (Auth & Cart)
 - JWT token stored in localStorage
+
+### Backoffice Interface
+The backoffice is a full React SPA built with shadcn/ui components featuring:
+- **Authentication Protection** - Automatically redirects to login if not authenticated
+- **Product Management** - Complete CRUD interface with modal dialogs
+- **Data Table** - Clean table view of all products with inline actions
+- **Form Validation** - Client-side validation for product data
+- **Real-time Updates** - Product list refreshes after create/update/delete operations
 
 ### Backend
 - **.NET 10 Web API**

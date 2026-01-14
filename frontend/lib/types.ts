@@ -53,3 +53,13 @@ export interface ApiResponse {
 export interface BulkResponse {
   responses: ApiResponse[];
 }
+
+export interface Page {
+  id: number;
+  slug: string;
+  title: string;
+  content: string; // JSON content from Puck editor
+  createdAt: string;
+  updatedAt: string;
+  isPublished: boolean;
+}

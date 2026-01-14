@@ -14,6 +14,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddSingleton<AuthService>();
 builder.Services.AddSingleton<ProductService>();
 builder.Services.AddSingleton<OrderService>();
+builder.Services.AddSingleton<PageService>();
 
 // Configure JWT Authentication
 var jwtKey = builder.Configuration["Jwt:Key"] ?? throw new InvalidOperationException("JWT Key not configured");
